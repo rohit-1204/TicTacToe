@@ -1,0 +1,75 @@
+<div *ngIf="startGame" class="gameContainer">
+
+  <div class="container">
+    <div #box1 *ngFor="let box of boxes; let i = index" (click)="onBoxClick(box1)" class="box"
+      [ngClass]="getBoxClasses(i)">
+      <span class="boxtext"></span>
+    </div>
+  </div>
+
+  <div class="gameInfo">
+    <!-- <h1>TicTacToe</h1> -->
+    <div>
+      <span class="info">Turn for {{player}}{{'('+turn+')'}}</span><br>
+
+      <div class="alert alert-success m-3 text-center" role="alert">
+        <h5 class="m-2">Score</h5>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">{{player1}}</th>
+              <th scope="col">{{player2}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{player1Win}}</td>
+              <td>{{player2Win}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button (click)="onResetClick()" class="me-2" mat-stroked-button>Re Play</button>
+      <button (click)="goToHome()" mat-stroked-button>Home</button>
+      <div class="m-5" *ngIf="disabled">
+        <img src="/assets/winner.gif" alt="" />
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div *ngIf="!startGame">
+  <h1 class="m-5 text-center">Welcome to Tic Tac MyTicTacToe</h1>
+  <mat-card class="example-card m-5">
+    <mat-card-header>
+    </mat-card-header>
+    <mat-card-content align="middle">
+      <mat-form-field>
+        <mat-label>Player1</mat-label>
+        <input matInput [(ngModel)]="player1">
+      </mat-form-field>
+      <br> <mat-form-field>
+        <mat-label>Player2</mat-label>
+        <input matInput [(ngModel)]="player2">
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions class="m-2" align="end">
+      <button mat-button (click)="play()">PLAY</button>
+    </mat-card-actions>
+    <mat-card-footer *ngIf="loading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </mat-card-footer>
+  </mat-card>
+
+
+
+</div>
